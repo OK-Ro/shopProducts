@@ -1,18 +1,39 @@
-import React, { useState } from "react";
-import category from "../fake-data/all-categories";
+import React, { useState, useEffect } from "react";
 
 function CategoryList({ onCategoryClick }) {
+  const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
 
-  const handleCategoryClick = (cat) => {
-    setActiveCategory(cat); // Update the active category when a button is clicked
-    onCategoryClick(cat); // Pass the selected category to the parent component
+  useEffect(() => {
+    // Fetch categories from the API
+    fetch("https://fakestoreapi.com/products/categories")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setCategories(data);
+        if (data.length > 0) {
+          setActiveCategory(data[0]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  }, []);
+
+  // Function to handle category click and update activeCategory
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+    onCategoryClick(category);
   };
 
   return (
     <div className="category-list">
       <div className="category-buttons">
-        {category.map((cat, index) => (
+        {categories.map((cat, index) => (
           <button
             key={index}
             className={`category-button ${

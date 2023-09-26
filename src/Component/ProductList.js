@@ -1,69 +1,67 @@
-import React, { useState } from "react";
-import Products from "../fake-data/all-products";
-import Cart from "./Cart";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-function ProductList({ selectedCategory }) {
-  const [cart, setCart] = useState([]);
-  const [isCartVisible, setIsCartVisible] = useState(false);
+export const addToCart = (product, cart, setCart) => {
+  if (!cart.find((item) => item.id === product.id)) {
+    setCart([...cart, product]);
+    console.log("Added to cart:", product);
+  } else {
+    console.log("Product is already in the cart.");
+  }
+};
 
-  const addToCart = (product) => {
-    if (!cart.find((item) => item.id === product.id)) {
-      setCart([...cart, product]);
-      console.log("Added to cart:", product);
-    } else {
-      console.log("Product is already in the cart.");
-    }
-  };
+function ProductList({ selectedCategory, cart, setCart }) {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const removeFromCart = (product) => {
-    const updatedCart = cart.filter((item) => item.id !== product.id);
-    setCart(updatedCart);
-    console.log("Removed from cart:", product);
-  };
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
 
-  const showCart = () => {
-    setIsCartVisible(true);
-  };
+    const apiUrl = selectedCategory
+      ? `https://fakestoreapi.com/products/category/${selectedCategory}`
+      : "https://fakestoreapi.com/products";
 
-  const showProducts = () => {
-    setIsCartVisible(false);
-  };
-
-  const filteredProducts = selectedCategory
-    ? Products.filter(
-        (product) => product.category === selectedCategory.substring(6)
-      )
-    : Products;
+    setTimeout(() => {
+      fetch(apiUrl)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setProducts(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setError(error);
+          setLoading(false);
+        });
+    }, 1000);
+  }, [selectedCategory]);
 
   return (
     <div className="product-list">
-      <header>
-        {isCartVisible ? (
-          <Cart
-            cart={cart}
-            removeFromCart={removeFromCart}
-            onBackToProductsClick={showProducts}
-          />
-        ) : (
-          <>
-            <button className="cart-container" onClick={showCart}>
-              Cart <span className="cart-length">({cart.length})</span>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error: {error.message}</p>
+      ) : (
+        products.map((product, index) => (
+          <div key={product.id} className="product">
+            <Link to={`/product/${product.id}`}>
+              <img src={product.image} alt={product.title} />
+              <h3>{product.title}</h3>
+            </Link>
+            <span className="price">€{product.price}</span>
+            <button onClick={() => addToCart(product, cart, setCart)}>
+              Add to Cart
             </button>
-            {filteredProducts.map((product) => (
-              <div key={product.id} className="product">
-                <img src={product.image} alt={product.title} />
-                <h3>{product.title}</h3>
-                <span className="price">€{product.price}</span>
-                <p>{product.description}</p>
-                <p>Category: {product.category}</p>
-                <p>Rating: {product.rating.rate}</p>
-                <p>Reviews: {product.rating.count}</p>
-                <button onClick={() => addToCart(product)}>Add to Cart</button>
-              </div>
-            ))}
-          </>
-        )}
-      </header>
+          </div>
+        ))
+      )}
     </div>
   );
 }

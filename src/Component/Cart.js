@@ -1,10 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Cart({ cart, removeFromCart, onBackToProductsClick }) {
+function Cart({ cart, removeFromCart }) {
+  const handleRemoveFromCart = (productId) => {
+    removeFromCart(productId);
+  };
+
   return (
     <div className="cart-items">
       <h2>Shopping Cart</h2>
-      <button onClick={onBackToProductsClick}>Back to Products</button>
+
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
@@ -13,11 +18,16 @@ function Cart({ cart, removeFromCart, onBackToProductsClick }) {
             <li key={item.id} className="cart-item">
               <span>{item.title}</span>
               <span className="price">€{item.price}</span>
-              <button onClick={() => removeFromCart(item)}>Remove</button>
+              <button onClick={() => handleRemoveFromCart(item.id)}>
+                Remove
+              </button>
             </li>
           ))}
         </ul>
       )}
+      <Link to="/">
+        <button>Back to Products</button>
+      </Link>
     </div>
   );
 }
