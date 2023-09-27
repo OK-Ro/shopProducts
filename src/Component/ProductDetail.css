@@ -76,7 +76,7 @@
 /* Media query for screens with a maximum width of 768px (typical for mobile devices) */
 @media (max-width: 768px) {
   .product-detail {
-    width: 60%;
+    width: 80%;
     padding: 5%;
     height: fit-content;
   }
