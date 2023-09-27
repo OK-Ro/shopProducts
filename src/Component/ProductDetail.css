@@ -50,3 +50,15 @@
 .product-detail a:hover {
   background-color: #0056b3;
 }
+.product-detail button {
+  background-color: #ff6000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.product-detail button:hover {
+  background-color: #00e0a0;
+}

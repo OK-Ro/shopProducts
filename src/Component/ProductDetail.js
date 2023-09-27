@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { addToCart } from "./ProductList"; 
+import { addToCart } from "./ProductList";
 
 function ProductDetail({ cart, setCart }) {
   const { id } = useParams();
@@ -50,8 +50,8 @@ function ProductDetail({ cart, setCart }) {
           <p>Rating: {product.rating.rate}</p>
           <p>Reviews: {product.rating.count}</p>
           <p>Category: {product.category}</p>
+          <button onClick={handleAddToCart}>Add to Cart</button>
           <div>
-            <button onClick={handleAddToCart}>Add to Cart</button>
             <Link to="/">Back to All Products</Link>
           </div>
         </>
