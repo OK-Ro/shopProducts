@@ -62,11 +62,23 @@
 .product-detail button:hover {
   background-color: #00e0a0;
 }
+/* CSS */
+.rate-view {
+  display: flex;
+}
+.rate-view p {
+  margin-right: 35px;
+  color: #000000;
+  font-weight: 500;
+  justify-content: space-between;
+}
 
+/* Media query for screens with a maximum width of 768px (typical for mobile devices) */
 @media (max-width: 768px) {
   .product-detail {
     width: 60%;
     padding: 5%;
+    height: fit-content;
   }
 
   .product-detail h2 {
