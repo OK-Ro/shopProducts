@@ -62,19 +62,26 @@
 .product-detail button:hover {
   background-color: #00e0a0;
 }
-/* Media query for screens with a maximum width of 768px (typical for mobile devices) */
+
 @media (max-width: 768px) {
   .product-detail {
-    width: 100%;
-    padding: 10px;
+    width: 60%;
+    padding: 5%;
   }
 
   .product-detail h2 {
-    font-size: 20px;
+    font-size: 15px;
+  }
+
+  .product-detail p {
+    font-size: 12px;
   }
 
   .product-detail img {
-    max-width: 100%;
+    max-width: 80%;
     margin-top: 10px;
+  }
+  .product-detail button {
+    padding: 6px 15px;
   }
 }
