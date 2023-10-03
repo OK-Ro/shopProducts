@@ -103,7 +103,6 @@ header button {
   color: #ff0000;
 }
 
-/* Mobile Styles */
 @media (max-width: 768px) {
   .product-list {
     width: 100%;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useFavorites } from "../Favorites";
-import useFetch from "../useFetch"; // Import the custom hook
+import useFetch from "../useFetch";
 
 export const addToCart = (product, cart, setCart) => {
   if (!cart.find((item) => item.id === product.id)) {
@@ -17,7 +17,7 @@ function ProductList({ selectedCategory, cart, setCart }) {
   const apiUrl = selectedCategory
     ? `https://fakestoreapi.com/products/category/${selectedCategory}`
     : "https://fakestoreapi.com/products";
-  const { data: products, loading, error } = useFetch(apiUrl); // Use the custom hook
+  const { data: products, loading, error } = useFetch(apiUrl);
 
   // Function to check if a product is in favorites
   const isProductInFavorites = (productId) => {
@@ -43,7 +43,7 @@ function ProductList({ selectedCategory, cart, setCart }) {
                   <button
                     className="favorite-buttons"
                     onClick={(e) => {
-                      e.preventDefault(); // Prevent the default anchor click behavior
+                      e.preventDefault();
                       toggleFavorite(product.id);
                     }}
                   >
@@ -53,7 +53,7 @@ function ProductList({ selectedCategory, cart, setCart }) {
                   <button
                     className="favorite-buttons"
                     onClick={(e) => {
-                      e.preventDefault(); // Prevent the default anchor click behavior
+                      e.preventDefault();
                       toggleFavorite(product.id);
                     }}
                   >

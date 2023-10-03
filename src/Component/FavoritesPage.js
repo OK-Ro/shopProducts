@@ -12,7 +12,6 @@ function FavoritesPage() {
     setLoading(true);
     setError(null);
 
-    // Fetch details for each favorite product
     const fetchFavoriteProducts = async () => {
       const productRequests = favorites.map((productId) =>
         fetch(`https://fakestoreapi.com/products/${productId}`).then(
