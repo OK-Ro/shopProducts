@@ -5,7 +5,6 @@ function CategoryList({ onCategoryClick }) {
   const [activeCategory, setActiveCategory] = useState(null);
 
   useEffect(() => {
-    // Fetch categories from the API
     fetch("https://fakestoreapi.com/products/categories")
       .then((response) => {
         if (!response.ok) {
