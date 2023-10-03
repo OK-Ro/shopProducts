@@ -1,0 +1,114 @@
+.favorites-page {
+  padding: 50px;
+  width: 50%;
+  background-color: #e0f6a3;
+  margin: 0 auto;
+  text-align: center;
+  align-items: center;
+  height: fit-content;
+}
+.favorites-route {
+  text-decoration: none;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 20px;
+  max-width: 100%;
+}
+.favorites-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.favorites-error {
+  color: red;
+  font-weight: bold;
+}
+
+.favorites-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.favorite-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.favorite-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.favorite-item img {
+  width: 50%;
+  height: fit-content;
+  margin-right: 20px;
+}
+
+.product-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.favorite-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.8rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.favorite-button:hover {
+  transform: scale(1.2);
+  color: #ff0000;
+}
+
+.favorite-button:focus {
+  outline: none;
+}
+
+.back-link {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.back-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
